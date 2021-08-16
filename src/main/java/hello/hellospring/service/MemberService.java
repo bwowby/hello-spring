@@ -5,11 +5,13 @@ import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 //컨테이너가 MemberController에 등록해줌
 @Service
+@Transactional //jpa는 모든게 transaction이어야 한다
 public class MemberService {
     //외부에서 넣어주게 바꿈
     //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -43,7 +45,7 @@ public class MemberService {
     /*
     * 전체 회원 조회
      */
-    public List<Member> findMember(){
+    public List<Member> findMembers(){
         return memberRepository.findAll();
     }
 
